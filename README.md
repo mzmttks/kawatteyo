@@ -9,4 +9,4 @@ A bicycle route tracking &amp; communication application.
 
 ## Architecture
 
-![Architecture](https://raw.github.com/wiki/mzmttks/kawatteyo/design.png)
+![Overview](https://raw.githubusercontent.com/mzmttks/kawatteyo/master/images/design.png)
