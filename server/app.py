@@ -10,6 +10,7 @@ import uuid
 define("port", default=8080, help="run on the given port", type=int)
 
 channels = {}
+connections = []
 
 class ChannelHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
@@ -41,17 +42,28 @@ class StaticHandler(tornado.web.RequestHandler):
         self.render("index.html")
 
 class SendWebSocket(tornado.websocket.WebSocketHandler):
-    def open(self, username):
-        self.i = 0
-        print username
-        print "aaa"
+    def open(self, chid):
+        self.add_connection()
+   
+    def add_connection(self):
+        if not(self in connections):
+            connections.append(self)
+ 
         
     def on_message(self, message):
-        print message
-        self.write_message(message)
+        for con in connections:
+            try:
+                con.write_message(message)
+            except:
+                connections.remove(con)
     
-    def on_close(self):
-        print "WebSocket closed"
+    def on_connection_close(self):
+        self.del_connection()
+        self.close()
+
+    def del_connection(self):
+        if self in connections:
+            connections.remove(self)
 
 app = tornado.web.Application([
     (r"/", StaticHandler),
