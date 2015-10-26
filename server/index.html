@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.4.min.js">
+    </script>
+    <form onsubmit="return false;">
+        <label>ChannelID</label>
+        <input type="text" id="channelid">
+        <button id="newchannel">New Channel</button>
+        <br>
+        <label>username</label>
+        <input type="text" id="username">
+        <button id="newuser">New User</button>
+        <br>
+        <label>message</label>
+        <input type="text" id="message">
+        <button id="send">Message</button>
+    </form>
+    <p id="log"></p>
+    <script type="text/javascript">
+      $("#newchannel").click(function(){
+          $.get("/channels")
+           .done(function(channelid){
+               $("#channelid").val(channelid);
+           });
+      });
+      $("#newuser").click(function(){
+           var channelid = $("#channelid").val();
+           var username = $("#username").val();
+           console.log(channelid);
+           $.ajax({
+               url: "/channels/" + channelid,
+               method: "post",
+               data: {username: username},
+               dataType: "text"
+           }).done(function(){
+               websock(username, channelid);
+           });
+      });
+      function websock(username, chid){
+          var ws = new WebSocket(
+              "ws://localhost:8080/channels/" + chid + "/socket");
+          ws.onopen = function() {
+              ws.send("Login: " + username); 
+          };
+          ws.onmessage = function (evt) {
+              console.log("onMessage");
+              $("#log").html($("#log").html() + "<br>" + evt.data);
+          };
+          $("#send").click(function(){
+              ws.send($("#message").val());
+          });
+      };
+    </script>
+  </body>
+</html>
