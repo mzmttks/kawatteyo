@@ -3,6 +3,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.websocket
 from tornado.ioloop import PeriodicCallback
+import pprint
 
 from tornado.options import define, options, parse_command_line
 import uuid
@@ -10,7 +11,6 @@ import uuid
 define("port", default=8080, help="run on the given port", type=int)
 
 channels = {}
-connections = []
 
 class ChannelHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
@@ -32,8 +32,13 @@ class ChannelHandler(tornado.web.RequestHandler):
         if not chid in channels:
             self.set_status(400)
             self.finish("Channel ID is not found")
+            return
+        if username in channels[chid]:
+            self.set_status(400)
+            self.finish("username already exists")
+            return
 
-        channels[chid].append(username)
+        pprint.pprint(channels)
         self.finish()
 
 
@@ -41,35 +46,39 @@ class StaticHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("index.html")
 
+
 class SendWebSocket(tornado.websocket.WebSocketHandler):
-    def open(self, chid):
-        self.add_connection()
-   
-    def add_connection(self):
-        if not(self in connections):
-            connections.append(self)
- 
+    def open(self, chid=None, user=None):
+        self.chid = chid
+        self.user = user
+        if chid not in channels:
+            return
+        if user in [c[0] for c in channels[chid]]:
+            return
+        if self not in channels[chid]:
+            channels[chid].append([user, self])
+        print "[open]"
+        pprint.pprint(channels)
         
     def on_message(self, message):
-        for con in connections:
+        for con in channels[self.chid]:
             try:
-                con.write_message(message)
+                print "on_message", con[1]
+                con[1].write_message(message)
             except:
-                connections.remove(con)
+                channels[self.chid].remove([self.user, con])
     
     def on_connection_close(self):
-        self.del_connection()
-        self.close()
-
-    def del_connection(self):
-        if self in connections:
-            connections.remove(self)
+        if self in [c[1] for c in channels[self.chid]]:
+            channels[self.chid].remove([self.user, self])
+            self.close()
 
 app = tornado.web.Application([
     (r"/", StaticHandler),
-    (r"/channels/(.*)/socket", SendWebSocket),
-    (r"/channels", ChannelHandler),
+    (r"/channels/(.*)/(.*)/socket", SendWebSocket),
     (r"/channels/(.*)", ChannelHandler),
+    (r"/socket.io/", SendWebSocket),
+    (r"/channels", ChannelHandler),
 ])
 
 if __name__ == "__main__":
