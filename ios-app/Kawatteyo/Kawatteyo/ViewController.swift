@@ -16,7 +16,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var locationLabel: UILabel!
     var isPositionGetting = false
     var mLocationManager: CLLocationManager!
-
+    var socket: SocketIOClient!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,26 +38,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         // Dispose of any resources that can be recreated.
     }
 
-
     @IBAction func send(sender: AnyObject) {
         if (isPositionGetting) {
-            getLocationButton.setTitle("Get position", forState: UIControlState.Normal)
-            locationTextField.text = ""
-            locationLabel.text = "Enter URL"
+            getLocationButton.setTitle("Start", forState: UIControlState.Normal)
+            locationLabel.text = ""
             isPositionGetting = false
             return
         }
         
-//        if (locationTextField.text == nil || locationTextField.text == "") {
-//            locationLabel.text = "Enter a valid URL"
-//            return
-//        }
+        if (locationTextField.text == nil || locationTextField.text == "") {
+            locationLabel.text = "Enter a valid WebSocket Server's URL"
+            return
+        }
         
         mLocationManager.startUpdatingLocation()
         
         getLocationButton.setTitle("Stop", forState: UIControlState.Normal)
         locationLabel.text = "Getting location..."
         isPositionGetting = true
+        
+        socket = SocketIOClient(socketURL: locationTextField.text!)
+        
+        socket.on("connect") { data in
+            print("socket connected")
+        }
+        socket.on("disconnect") { data in
+            print("socket disconnected")
+        }
+        socket.connect()
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
