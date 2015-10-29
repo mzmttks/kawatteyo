@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54F3946255E80D75DF0200AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394CF7B43B5B9942C259F039 /* Pods.framework */; };
 		CF3ADB2F1BDE48470060DD28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ADB2E1BDE48470060DD28 /* AppDelegate.swift */; };
 		CF3ADB311BDE48470060DD28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ADB301BDE48470060DD28 /* ViewController.swift */; };
 		CF3ADB341BDE48470060DD28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF3ADB321BDE48470060DD28 /* Main.storyboard */; };
@@ -14,25 +15,6 @@
 		CF3ADB391BDE48470060DD28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF3ADB371BDE48470060DD28 /* LaunchScreen.storyboard */; };
 		CF3ADB441BDE48470060DD28 /* KawatteyoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ADB431BDE48470060DD28 /* KawatteyoTests.swift */; };
 		CF3ADB4F1BDE48480060DD28 /* KawatteyoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3ADB4E1BDE48480060DD28 /* KawatteyoUITests.swift */; };
-		CF4300001BDF9A1F00DF3636 /* SocketStringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFED1BDF9A1F00DF3636 /* SocketStringReader.swift */; };
-		CF4300011BDF9A1F00DF3636 /* SocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFEE1BDF9A1F00DF3636 /* SocketTypes.swift */; };
-		CF4300021BDF9A1F00DF3636 /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFEF1BDF9A1F00DF3636 /* SwiftRegex.swift */; };
-		CF4300031BDF9A1F00DF3636 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFF01BDF9A1F00DF3636 /* WebSocket.swift */; };
-		CF43FFF11BDF9A1F00DF3636 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFDE1BDF9A1F00DF3636 /* SocketAckEmitter.swift */; };
-		CF43FFF21BDF9A1F00DF3636 /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFDF1BDF9A1F00DF3636 /* SocketAckManager.swift */; };
-		CF43FFF31BDF9A1F00DF3636 /* SocketAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFE01BDF9A1F00DF3636 /* SocketAnyEvent.swift */; };
-		CF43FFF41BDF9A1F00DF3636 /* SocketEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFE11BDF9A1F00DF3636 /* SocketEngine.swift */; };
-		CF43FFF51BDF9A1F00DF3636 /* SocketEngineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFE21BDF9A1F00DF3636 /* SocketEngineClient.swift */; };
-		CF43FFF61BDF9A1F00DF3636 /* SocketEnginePacketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFE31BDF9A1F00DF3636 /* SocketEnginePacketType.swift */; };
-		CF43FFF71BDF9A1F00DF3636 /* SocketEngineSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFE41BDF9A1F00DF3636 /* SocketEngineSpec.swift */; };
-		CF43FFF81BDF9A1F00DF3636 /* SocketEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFE51BDF9A1F00DF3636 /* SocketEventHandler.swift */; };
-		CF43FFF91BDF9A1F00DF3636 /* SocketFixUTF8.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFE61BDF9A1F00DF3636 /* SocketFixUTF8.swift */; };
-		CF43FFFA1BDF9A1F00DF3636 /* SocketIOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFE71BDF9A1F00DF3636 /* SocketIOClient.swift */; };
-		CF43FFFB1BDF9A1F00DF3636 /* SocketIOClientOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFE81BDF9A1F00DF3636 /* SocketIOClientOption.swift */; };
-		CF43FFFC1BDF9A1F00DF3636 /* SocketIOClientStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFE91BDF9A1F00DF3636 /* SocketIOClientStatus.swift */; };
-		CF43FFFD1BDF9A1F00DF3636 /* SocketLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFEA1BDF9A1F00DF3636 /* SocketLogger.swift */; };
-		CF43FFFE1BDF9A1F00DF3636 /* SocketPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFEB1BDF9A1F00DF3636 /* SocketPacket.swift */; };
-		CF43FFFF1BDF9A1F00DF3636 /* SocketParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43FFEC1BDF9A1F00DF3636 /* SocketParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		394CF7B43B5B9942C259F039 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		899377ABC6F13F7B9F82F32A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CF3ADB2B1BDE48470060DD28 /* Kawatteyo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kawatteyo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3ADB2E1BDE48470060DD28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF3ADB301BDE48470060DD28 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,25 +50,7 @@
 		CF3ADB4A1BDE48480060DD28 /* KawatteyoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KawatteyoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF3ADB4E1BDE48480060DD28 /* KawatteyoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KawatteyoUITests.swift; sourceTree = "<group>"; };
 		CF3ADB501BDE48480060DD28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CF43FFDE1BDF9A1F00DF3636 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
-		CF43FFDF1BDF9A1F00DF3636 /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
-		CF43FFE01BDF9A1F00DF3636 /* SocketAnyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAnyEvent.swift; sourceTree = "<group>"; };
-		CF43FFE11BDF9A1F00DF3636 /* SocketEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngine.swift; sourceTree = "<group>"; };
-		CF43FFE21BDF9A1F00DF3636 /* SocketEngineClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngineClient.swift; sourceTree = "<group>"; };
-		CF43FFE31BDF9A1F00DF3636 /* SocketEnginePacketType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEnginePacketType.swift; sourceTree = "<group>"; };
-		CF43FFE41BDF9A1F00DF3636 /* SocketEngineSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngineSpec.swift; sourceTree = "<group>"; };
-		CF43FFE51BDF9A1F00DF3636 /* SocketEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEventHandler.swift; sourceTree = "<group>"; };
-		CF43FFE61BDF9A1F00DF3636 /* SocketFixUTF8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketFixUTF8.swift; sourceTree = "<group>"; };
-		CF43FFE71BDF9A1F00DF3636 /* SocketIOClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClient.swift; sourceTree = "<group>"; };
-		CF43FFE81BDF9A1F00DF3636 /* SocketIOClientOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClientOption.swift; sourceTree = "<group>"; };
-		CF43FFE91BDF9A1F00DF3636 /* SocketIOClientStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClientStatus.swift; sourceTree = "<group>"; };
-		CF43FFEA1BDF9A1F00DF3636 /* SocketLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketLogger.swift; sourceTree = "<group>"; };
-		CF43FFEB1BDF9A1F00DF3636 /* SocketPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketPacket.swift; sourceTree = "<group>"; };
-		CF43FFEC1BDF9A1F00DF3636 /* SocketParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketParser.swift; sourceTree = "<group>"; };
-		CF43FFED1BDF9A1F00DF3636 /* SocketStringReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketStringReader.swift; sourceTree = "<group>"; };
-		CF43FFEE1BDF9A1F00DF3636 /* SocketTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketTypes.swift; sourceTree = "<group>"; };
-		CF43FFEF1BDF9A1F00DF3636 /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
-		CF43FFF01BDF9A1F00DF3636 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		F918A8FBD2CC86EB409D069C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54F3946255E80D75DF0200AE /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +79,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FBE232959D11ED5D1C50447 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F918A8FBD2CC86EB409D069C /* Pods.debug.xcconfig */,
+				899377ABC6F13F7B9F82F32A /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		842BCF5E0172D46C7D911489 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				394CF7B43B5B9942C259F039 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CF3ADB221BDE48470060DD28 = {
 			isa = PBXGroup;
 			children = (
@@ -119,7 +103,8 @@
 				CF3ADB421BDE48470060DD28 /* KawatteyoTests */,
 				CF3ADB4D1BDE48480060DD28 /* KawatteyoUITests */,
 				CF3ADB2C1BDE48470060DD28 /* Products */,
-				CF43FFDD1BDF9A1F00DF3636 /* SocketIOClientSwift */,
+				0FBE232959D11ED5D1C50447 /* Pods */,
+				842BCF5E0172D46C7D911489 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,32 +149,6 @@
 			path = KawatteyoUITests;
 			sourceTree = "<group>";
 		};
-		CF43FFDD1BDF9A1F00DF3636 /* SocketIOClientSwift */ = {
-			isa = PBXGroup;
-			children = (
-				CF43FFDE1BDF9A1F00DF3636 /* SocketAckEmitter.swift */,
-				CF43FFDF1BDF9A1F00DF3636 /* SocketAckManager.swift */,
-				CF43FFE01BDF9A1F00DF3636 /* SocketAnyEvent.swift */,
-				CF43FFE11BDF9A1F00DF3636 /* SocketEngine.swift */,
-				CF43FFE21BDF9A1F00DF3636 /* SocketEngineClient.swift */,
-				CF43FFE31BDF9A1F00DF3636 /* SocketEnginePacketType.swift */,
-				CF43FFE41BDF9A1F00DF3636 /* SocketEngineSpec.swift */,
-				CF43FFE51BDF9A1F00DF3636 /* SocketEventHandler.swift */,
-				CF43FFE61BDF9A1F00DF3636 /* SocketFixUTF8.swift */,
-				CF43FFE71BDF9A1F00DF3636 /* SocketIOClient.swift */,
-				CF43FFE81BDF9A1F00DF3636 /* SocketIOClientOption.swift */,
-				CF43FFE91BDF9A1F00DF3636 /* SocketIOClientStatus.swift */,
-				CF43FFEA1BDF9A1F00DF3636 /* SocketLogger.swift */,
-				CF43FFEB1BDF9A1F00DF3636 /* SocketPacket.swift */,
-				CF43FFEC1BDF9A1F00DF3636 /* SocketParser.swift */,
-				CF43FFED1BDF9A1F00DF3636 /* SocketStringReader.swift */,
-				CF43FFEE1BDF9A1F00DF3636 /* SocketTypes.swift */,
-				CF43FFEF1BDF9A1F00DF3636 /* SwiftRegex.swift */,
-				CF43FFF01BDF9A1F00DF3636 /* WebSocket.swift */,
-			);
-			path = SocketIOClientSwift;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF3ADB531BDE48480060DD28 /* Build configuration list for PBXNativeTarget "Kawatteyo" */;
 			buildPhases = (
+				842B49832754FA19EFD33FF4 /* Check Pods Manifest.lock */,
 				CF3ADB271BDE48470060DD28 /* Sources */,
 				CF3ADB281BDE48470060DD28 /* Frameworks */,
 				CF3ADB291BDE48470060DD28 /* Resources */,
+				61998CAAA405C8C7083AA79D /* Embed Pods Frameworks */,
+				B9BB2A1C1CD501AE1B3145A6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -316,31 +278,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		61998CAAA405C8C7083AA79D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		842B49832754FA19EFD33FF4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B9BB2A1C1CD501AE1B3145A6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CF3ADB271BDE48470060DD28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF43FFF61BDF9A1F00DF3636 /* SocketEnginePacketType.swift in Sources */,
-				CF43FFF51BDF9A1F00DF3636 /* SocketEngineClient.swift in Sources */,
-				CF43FFF91BDF9A1F00DF3636 /* SocketFixUTF8.swift in Sources */,
-				CF43FFFA1BDF9A1F00DF3636 /* SocketIOClient.swift in Sources */,
-				CF43FFFF1BDF9A1F00DF3636 /* SocketParser.swift in Sources */,
-				CF43FFF81BDF9A1F00DF3636 /* SocketEventHandler.swift in Sources */,
-				CF4300001BDF9A1F00DF3636 /* SocketStringReader.swift in Sources */,
-				CF4300021BDF9A1F00DF3636 /* SwiftRegex.swift in Sources */,
-				CF43FFF41BDF9A1F00DF3636 /* SocketEngine.swift in Sources */,
-				CF43FFF71BDF9A1F00DF3636 /* SocketEngineSpec.swift in Sources */,
-				CF43FFF31BDF9A1F00DF3636 /* SocketAnyEvent.swift in Sources */,
-				CF43FFF21BDF9A1F00DF3636 /* SocketAckManager.swift in Sources */,
-				CF43FFFC1BDF9A1F00DF3636 /* SocketIOClientStatus.swift in Sources */,
-				CF4300031BDF9A1F00DF3636 /* WebSocket.swift in Sources */,
-				CF43FFF11BDF9A1F00DF3636 /* SocketAckEmitter.swift in Sources */,
-				CF43FFFD1BDF9A1F00DF3636 /* SocketLogger.swift in Sources */,
 				CF3ADB311BDE48470060DD28 /* ViewController.swift in Sources */,
-				CF43FFFB1BDF9A1F00DF3636 /* SocketIOClientOption.swift in Sources */,
-				CF4300011BDF9A1F00DF3636 /* SocketTypes.swift in Sources */,
-				CF43FFFE1BDF9A1F00DF3636 /* SocketPacket.swift in Sources */,
 				CF3ADB2F1BDE48470060DD28 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +472,7 @@
 		};
 		CF3ADB541BDE48480060DD28 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F918A8FBD2CC86EB409D069C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Kawatteyo/Info.plist;
@@ -492,6 +484,7 @@
 		};
 		CF3ADB551BDE48480060DD28 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 899377ABC6F13F7B9F82F32A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Kawatteyo/Info.plist;
