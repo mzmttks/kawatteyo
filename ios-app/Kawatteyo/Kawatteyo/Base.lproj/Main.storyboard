@@ -38,40 +38,26 @@
                                     <action selector="send:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fl8-Mg-VkL"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="not used yet" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sei-Ra-ESe">
-                                <rect key="frame" x="201" y="235" width="200" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="GKD-xr-4Yz"/>
-                                </constraints>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Your Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ybc-Zz-TVk">
+                                <rect key="frame" x="256" y="245" width="89" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Server" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch7-R9-frL">
-                                <rect key="frame" x="260" y="191" width="80" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="Lgc-8N-1TO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="sei-Ra-ESe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1fP-m4-Qyd"/>
+                            <constraint firstItem="ybc-Zz-TVk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-40" id="3ou-uk-qe5"/>
                             <constraint firstItem="PFF-A0-pG6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="6QW-IY-qxf"/>
-                            <constraint firstItem="ch7-R9-frL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Dx9-6W-xqZ"/>
-                            <constraint firstItem="ch7-R9-frL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="FHv-LV-B3f"/>
                             <constraint firstItem="PFF-A0-pG6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pvm-SM-jJV"/>
                             <constraint firstItem="ABt-Rs-Atx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="50" id="cra-6Y-LuZ"/>
                             <constraint firstItem="ABt-Rs-Atx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eIe-2D-0XE"/>
-                            <constraint firstItem="sei-Ra-ESe" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="sno-8Q-Sv9"/>
+                            <constraint firstItem="ybc-Zz-TVk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vsK-7q-hPH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="getLocationButton" destination="PFF-A0-pG6" id="ifW-gU-OuL"/>
                         <outlet property="locationLabel" destination="ABt-Rs-Atx" id="COS-AO-yJC"/>
-                        <outlet property="locationTextField" destination="sei-Ra-ESe" id="COr-Nt-nja"/>
+                        <outlet property="userIdTextField" destination="ybc-Zz-TVk" id="FSN-5E-YWR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

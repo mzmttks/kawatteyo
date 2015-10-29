@@ -12,12 +12,16 @@ import Starscream
 
 class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDelegate{
 
-    @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var userIdTextField: UITextField!
     @IBOutlet weak var getLocationButton: UIButton!
     @IBOutlet weak var locationLabel: UILabel!
     var isPositionGetting = false
     var mLocationManager: CLLocationManager!
-    var socket = WebSocket(url: NSURL(string: "ws://localhost:8080/")!)
+    var socket = WebSocket(url: NSURL(string: "ws://dev.hosts.hark.jp:8080/socket")!)
+    
+    var myUuid: String!
+    
+    let regex = try? NSRegularExpression(pattern: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", options: NSRegularExpressionOptions())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,9 +58,83 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
     }
     
     func websocketDidReceiveMessage(ws: WebSocket, text: String) {
-        print("Received text: \(text)")
+        print("Message received: \(text)")
+        
+        let receivedMessage = parseMessage(text)
+
+        if receivedMessage["from"] != nil {
+            let from = receivedMessage["from"] as! String
+            print("from=\(from)")
+            
+            if from == "client" {
+                return
+            }
+        }
+
+        if receivedMessage as! NSObject == 0 {
+            print("error")
+            return
+        }
+        
+        if ((receivedMessage["uuid"] as! String?) != nil) {
+            print("@@@@uuid=\(receivedMessage["uuid"])")
+            
+            self.myUuid = receivedMessage["uuid"] as! String
+            registerUserId()
+            return
+        }
+        
+        if (receivedMessage["type"] as! String?) != nil && receivedMessage["type"] as! String == "Registered" {
+            print("Registered")
+            sendKawatteyo()
+            return
+        }
+        
+//        let receivedText = text
+//        let result = regex?.firstMatchInString(receivedText as String, options: NSMatchingOptions(), range: NSRange(location: 0, length: receivedText.characters.count))
+////        let result = regex?.firstMatchInString(text as String, options: NSMatchingOptions(), range: NSRange(location: 0, length: text.characters.count))
+//        if result != nil {
+//            // received message is uuuid
+//            print("***uuid= \(receivedText) ***" )
+//            
+//            let startIndex = receivedText.endIndex.advancedBy(-36)
+//            self.myUuid = receivedText.substringFromIndex(startIndex)
+//            print("### \(self.myUuid)")
+//            
+//            registerUserId()
+//            return
+//        }
+//        
+//        if text.hasPrefix("[Server]Registered") {
+//            print("***registered***")
+//            sendKawatteyo()
+//        }
     }
     
+    func parseMessage(message: String) -> AnyObject {
+        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
+        do{
+            let jsonArray = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+            return jsonArray
+        } catch{
+            print("error")
+            return 0
+        }
+    }
+    
+    func sendKawatteyo() {
+        print("in sendKawatteyo")
+        let message = "{\"from\":\"client\", \"command\":\"Kawatteyo\", \"uuid\":\"\(self.myUuid)\"}"
+        socket.writeString(message)
+    }
+    
+    func registerUserId() {
+        let userId = userIdTextField.text!
+        let message = "{\"from\":\"client\", \"command\":\"setname\", \"uuid\":\"\(self.myUuid)\",\"name\":  \"\(userId)\"}"
+        print("in registerUserId:send=\(message)")
+        socket.writeString(message)
+    }
+
     func websocketDidReceiveData(ws: WebSocket, data: NSData) {
         print("Received data: \(data.length)")
     } // ----------------------------------
@@ -98,11 +176,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
     
     @IBAction func send(sender: AnyObject) {
         
-//        if (locationTextField.text == nil || locationTextField.text == "") {
-//            locationLabel.text = "Enter a valid resource path"
-//            return
-//        }
-
         if socket.isConnected {
             getLocationButton.setTitle("Connect", forState: UIControlState.Normal)
             socket.disconnect()
@@ -110,24 +183,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
             getLocationButton.setTitle("Disconnect", forState: UIControlState.Normal)
             socket.connect()
         }
-        
-//        if (isPositionGetting) {
-//            getLocationButton.setTitle("Start", forState: UIControlState.Normal)
-//            locationLabel.text = ""
-//            isPositionGetting = false
-//            return
-//        }
-//        
-//        if (locationTextField.text == nil || locationTextField.text == "") {
-//            locationLabel.text = "Enter a valid WebSocket Server's URL"
-//            return
-//        }
-//        
-//        mLocationManager.startUpdatingLocation()
-//        
-//        getLocationButton.setTitle("Stop", forState: UIControlState.Normal)
-//        locationLabel.text = "Getting location..."
-//        isPositionGetting = true
     }
 }
 
