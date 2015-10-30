@@ -9,19 +9,19 @@
 import UIKit
 import CoreLocation
 import Starscream
+import AVFoundation
 
 class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDelegate{
 
     @IBOutlet weak var userIdTextField: UITextField!
     @IBOutlet weak var getLocationButton: UIButton!
     @IBOutlet weak var locationLabel: UILabel!
+
     var isPositionGetting = false
     var mLocationManager: CLLocationManager!
-    var socket = WebSocket(url: NSURL(string: "ws://dev.hosts.hark.jp:8080/socket")!)
-    
+    var socket = WebSocket(url: NSURL(string: "ws://localhost:8080/socket")!)
+//    var socket = WebSocket(url: NSURL(string: "ws://dev.hosts.hark.jp:8080/socket")!)
     var myUuid: String!
-    
-    let regex = try? NSRegularExpression(pattern: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", options: NSRegularExpressionOptions())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +38,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
         mLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         mLocationManager.distanceFilter = 100
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    // Broadcast kawatteyo message
+    @IBAction func kawatteyo(sender: AnyObject) {
+        print("in kawatteyo")
+        sendKawatteyo()
+    }
+    
     // ----- WebcSocket Delegates ------
     func websocketDidConnect(ws: WebSocket) {
         print("websocket is connected")
@@ -61,7 +67,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
         print("Message received: \(text)")
         
         let receivedMessage = parseMessage(text)
-
+        // Drop message if it cannot be parsed
+        if receivedMessage as! NSObject == 0 {
+            print("error")
+            return
+        }
+        
+        // Drop my own message
         if receivedMessage["from"] != nil {
             let from = receivedMessage["from"] as! String
             print("from=\(from)")
@@ -70,13 +82,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
                 return
             }
         }
-
-        if receivedMessage as! NSObject == 0 {
-            print("error")
-            return
-        }
         
+        // --- Message handling ---
         if ((receivedMessage["uuid"] as! String?) != nil) {
+            // Channel identifier generation result
             print("@@@@uuid=\(receivedMessage["uuid"])")
             
             self.myUuid = receivedMessage["uuid"] as! String
@@ -84,31 +93,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
             return
         }
         
-        if (receivedMessage["type"] as! String?) != nil && receivedMessage["type"] as! String == "Registered" {
-            print("Registered")
-            sendKawatteyo()
-            return
-        }
-        
-//        let receivedText = text
-//        let result = regex?.firstMatchInString(receivedText as String, options: NSMatchingOptions(), range: NSRange(location: 0, length: receivedText.characters.count))
-////        let result = regex?.firstMatchInString(text as String, options: NSMatchingOptions(), range: NSRange(location: 0, length: text.characters.count))
-//        if result != nil {
-//            // received message is uuuid
-//            print("***uuid= \(receivedText) ***" )
-//            
-//            let startIndex = receivedText.endIndex.advancedBy(-36)
-//            self.myUuid = receivedText.substringFromIndex(startIndex)
-//            print("### \(self.myUuid)")
-//            
-//            registerUserId()
+//        if (receivedMessage["type"] as! String?) != nil && receivedMessage["type"] as! String == "Registered" {
+//            // user registration result
+//            print("Registered")
 //            return
 //        }
-//        
-//        if text.hasPrefix("[Server]Registered") {
-//            print("***registered***")
-//            sendKawatteyo()
-//        }
+        
+        if (receivedMessage["type"] as! String?) != nil {
+
+            if (receivedMessage["type"] as! String) == "Registered" {
+                // user registration result, do nothing so far
+                print("Registered")
+                return
+            }
+            
+            if (receivedMessage["type"] as! String) == "Kawatteyo" {
+                // Kawatteyo broadcast, notfiy user
+                handleKawatteyo()
+                return
+            }
+        }
+    }
+    
+    func handleKawatteyo() {
+        print("in handleKawatteyo")
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        let alert = UIAlertView()
+        alert.title = "Kawatteyo"
+        alert.message = "かわってよ"
+        alert.addButtonWithTitle("OK")
+        alert.show()
     }
     
     func parseMessage(message: String) -> AnyObject {

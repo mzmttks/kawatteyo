@@ -43,12 +43,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XmE-UU-s1k">
+                                <rect key="frame" x="260" y="435" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="jtT-4t-7AQ"/>
+                                </constraints>
+                                <state key="normal" title="Kawatteyo"/>
+                                <connections>
+                                    <action selector="kawatteyo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fWa-Kn-UBu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="XmE-UU-s1k" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="150" id="2Oe-u3-6DO"/>
                             <constraint firstItem="ybc-Zz-TVk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-40" id="3ou-uk-qe5"/>
                             <constraint firstItem="PFF-A0-pG6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="6QW-IY-qxf"/>
                             <constraint firstItem="PFF-A0-pG6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pvm-SM-jJV"/>
+                            <constraint firstItem="XmE-UU-s1k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vup-E6-CAu"/>
                             <constraint firstItem="ABt-Rs-Atx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="50" id="cra-6Y-LuZ"/>
                             <constraint firstItem="ABt-Rs-Atx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eIe-2D-0XE"/>
                             <constraint firstItem="ybc-Zz-TVk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vsK-7q-hPH"/>
