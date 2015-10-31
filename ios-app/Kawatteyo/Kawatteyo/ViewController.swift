@@ -11,7 +11,7 @@ import CoreLocation
 import Starscream
 import AVFoundation
 
-class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDelegate{
+class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDelegate, UITextFieldDelegate{
 
     @IBOutlet weak var userIdTextField: UITextField!
     @IBOutlet weak var getLocationButton: UIButton!
@@ -19,13 +19,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
 
     var isPositionGetting = false
     var mLocationManager: CLLocationManager!
-    var socket = WebSocket(url: NSURL(string: "ws://localhost:8080/socket")!)
-//    var socket = WebSocket(url: NSURL(string: "ws://dev.hosts.hark.jp:8080/socket")!)
+//    var socket = WebSocket(url: NSURL(string: "ws://localhost:8080/socket")!)
+    var socket = WebSocket(url: NSURL(string: "ws://dev.hosts.hark.jp:8080/socket")!)
     var myUuid: String!
-    
+    var myUserId = "Your Name" // default
+
     override func viewDidLoad() {
         super.viewDidLoad()
         socket.delegate = self
+        userIdTextField.delegate = self
         
         mLocationManager = CLLocationManager()
         mLocationManager.delegate = self
@@ -37,6 +39,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
         
         mLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         mLocationManager.distanceFilter = 100
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        userIdTextField.resignFirstResponder()
+        return true
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,6 +120,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
                 return
             }
         }
+        
+        if (receivedMessage["message"] as! String?) != nil {
+            
+            if (receivedMessage["message"] as! String) == "Kawatteyo" {
+                
+                if (receivedMessage["user"] as! String) == self.myUserId {
+                    // if this message is from myself, skip
+                    return
+                }
+                
+                // Kawatteyo broadcast, notfiy user
+                handleKawatteyo()
+                return
+            }
+        }
+
     }
     
     func handleKawatteyo() {
@@ -143,8 +166,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
     }
     
     func registerUserId() {
-        let userId = userIdTextField.text!
-        let message = "{\"from\":\"client\", \"command\":\"setname\", \"uuid\":\"\(self.myUuid)\",\"name\":  \"\(userId)\"}"
+        self.myUserId = userIdTextField.text!
+        
+        let message = "{\"from\":\"client\", \"command\":\"setname\", \"uuid\":\"\(self.myUuid)\",\"name\":  \"\(self.myUserId)\"}"
         print("in registerUserId:send=\(message)")
         socket.writeString(message)
     }
@@ -152,7 +176,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
     func websocketDidReceiveData(ws: WebSocket, data: NSData) {
         print("Received data: \(data.length)")
     } // ----------------------------------
-    
     
     // ----- CLLocationManager Delegates -----
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -173,7 +196,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
         }
         print(" CLAuthorizationStatus: \(statusStr)")
     }
-    
+
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         print("location updated.")
@@ -183,13 +206,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, WebSocketDele
         
         locationLabel.text = "tst: \(timestamp)\n lat: \(latitude) \n lon \(longitude)"
     }
-    
+
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("error")
     } // ----------------------------------
-    
+
     @IBAction func send(sender: AnyObject) {
-        
+
         if socket.isConnected {
             getLocationButton.setTitle("Connect", forState: UIControlState.Normal)
             socket.disconnect()
